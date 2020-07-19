@@ -1,0 +1,52 @@
+---
+- hosts: all
+  user: root
+  become: True
+  tasks:
+  #  - name: Disable SELinux
+  #    selinux:
+  #      state: disabled
+  #  - name: Reboot a slow machine that might 
+  #    reboot:
+  #      reboot_timeout: 20
+  #      post_reboot_delay: 15
+ #   - name: Install list package
+ #     dnf:
+ #       name: '{{ item }}'
+ #       state: present
+ #       update_cache: True
+ #     loop:
+ #       - epel-release
+ #       - certbot
+ #       - nginx
+ #       - bind-utils.x86_64
+ #       - wget
+ #       - curl
+ #       - vim
+ #       - net-tools
+ #       - telnet
+ #   - name: Create a directory if it does not exist
+ #     file:
+ #       path: /var/www/domains/well-known/acme-challenge
+ #       state: directory
+ #       mode: '0755'
+ #   - name: Copy multiple files in Ansible with different permissions
+ #     copy:
+ #       src: "{{ item.src }}"
+ #       dest: "{{ item.dest }}"
+ #       force: "yes"
+ #       #mode: "{{item.mode}}"
+ #     with_items:
+ #       - { src: './nginx.conf.j2',dest: '/etc/nginx/nginx.conf'}
+ #       - { src: './site_ssl.conf.j2',dest: '/etc/nginx/conf.d/site_ssl.conf'}
+ #       
+ #   - name: systemctl restart nginx
+ #     systemd:
+ #       name: nginx
+ #       state: restarted
+ #       daemon_reload: yes
+    - name: Execute the command in remote shell; remote.
+      shell:  "certbot certonly --standalone -n --agree-tos -m 'admin@gmail.com' --preferred-challenges http -d ansible.vakong.fun "
+   
+      
+

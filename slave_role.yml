@@ -1,0 +1,12 @@
+---
+- hosts: slave
+  become: yes
+  remote_user: root
+  become_method: su
+  vars_files:
+    - var/vars.yml
+  roles:
+  #  - { role: package }
+    - { role: slave }
+   # - { role: git }
+   # - { role: postgres }

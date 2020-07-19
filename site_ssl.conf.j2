@@ -1,0 +1,60 @@
+server {
+        listen 80;
+        #listen [::]:80 default_server;
+
+        access_log off;
+        error_log off;
+
+        root /var/www/domains/;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name ansible.vakong.fun;
+
+        location ^~ /.well-known/acme-challenge {
+        #default_type "text/plain";
+        allow all;
+        root /var/www/domains/;
+   }
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+       #return 301 https://ssl.vakong.fun$request_uri;
+
+}
+#server {
+#    listen 443 ssl http2;
+#    server_name ssl.vakong.fun;
+#
+#    ssl_certificate /etc/letsencrypt/live/ssl.vakong.fun/fullchain.pem;
+#    ssl_certificate_key /etc/letsencrypt/live/ssl.vakong.fun/privkey.pem;
+#
+#    ## Improve HTTPS performance with session resumption
+#    ssl_ciphers "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384";
+#    #ssl_dhparam /etc/ssl/dh4096.pem;
+#    ssl_ecdh_curve secp521r1:secp384r1; #| or auto
+#    # Add security options for nginx
+#    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+#
+#    ssl_trusted_certificate /etc/letsencrypt/live/ssl.vakong.fun/fullchain.pem;
+#
+#    #ssl on; Deprecated
+#
+#    ssl_protocols        TLSv1 TLSv1.1 TLSv1.2;
+#    keepalive_timeout    70;
+#    ssl_session_cache    shared:SSL:10m;
+#    ssl_session_timeout  10m;
+#
+#    access_log /var/log/nginx/vakong.access.log;
+#    error_log /var/log/nginx/vakong.error.log;
+#    location ^~ /.well-known/acme-challenge {
+#        #default_type "text/plain";
+#        allow all;
+#        root /var/www/domains/;
+#   }
+#
+#    }
+#
+#
+#

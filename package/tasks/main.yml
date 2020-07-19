@@ -1,0 +1,20 @@
+---
+# tasks file for package
+  - name: install the latest package version 
+    dnf:
+      name:
+        - sudo 
+        - epel-release
+        - vim
+        - postgresql
+        - postgresql-server
+        - openssl
+        - python3-psycopg2.x86_64
+        - net-tools
+      state: latest
+    register: install_pakages
+  - debug:
+      var: install_pakages
+
+
+
